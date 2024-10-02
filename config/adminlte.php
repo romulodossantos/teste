@@ -311,16 +311,15 @@ return [
             'text' => 'procurar',
         ],
         [
-            'text' => 'blog',
-            'url' => 'admin/blog',
-            'can' => 'manage-blog',
+            'text' => 'Livros',
+            'url' => 'livros',
+            'icon' => 'fas fa-book-open',
         ],
         [
-            'text' => 'pages',
-            'url' => 'admin/pages',
+            'text' => 'Categorias',
+            'url' => 'categorias',
             'icon' => 'far fa-fw fa-file',
-            'label' => 4,
-            'label_color' => 'success',
+
         ],
         ['header' => 'account_settings'],
         [
