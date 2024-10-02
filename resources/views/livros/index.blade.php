@@ -13,6 +13,7 @@
                 {{ session('success') }}
             </div>
         @endif
+
         <div class="card">
             <div class="card-header">
                 <h3 class="card-title">Livros</h3>
@@ -22,7 +23,32 @@
                     </a>
                 </div>
             </div>
+
             <div class="card-body">
+                <!-- Formulário de Filtro -->
+                <form method="GET" action="{{ route('livros.index') }}" class="mb-3">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="titulo">Título:</label>
+                                <input type="text" name="titulo" id="titulo" class="form-control" placeholder="Filtrar por título" value="{{ request('titulo') }}">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="perPage">Itens por Página:</label>
+                                <input type="number" name="perPage" id="perPage" class="form-control" value="{{ request('perPage', 10) }}" min="1" max="100">
+                            </div>
+                        </div>
+                        <div class="col-md-4 d-flex align-items-center pt-4">
+                            <div class="w-100 text-center">
+                                <button type="submit" class="btn btn-primary">Filtrar</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+
                 <table class="table table-bordered table-hover">
                     <thead>
                         <tr>
