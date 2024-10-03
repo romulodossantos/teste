@@ -31,13 +31,15 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="titulo">Título:</label>
-                                <input type="text" name="titulo" id="titulo" class="form-control" placeholder="Filtrar por título" value="{{ request('titulo') }}">
+                                <input type="text" name="titulo" id="titulo" class="form-control"
+                                    placeholder="Filtrar por título" value="{{ request('titulo') }}">
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="perPage">Itens por Página:</label>
-                                <input type="number" name="perPage" id="perPage" class="form-control" value="{{ request('perPage', 10) }}" min="1" max="100">
+                                <input type="number" name="perPage" id="perPage" class="form-control"
+                                    value="{{ request('perPage', 10) }}" min="1" max="100">
                             </div>
                         </div>
                         <div class="col-md-4 d-flex align-items-center pt-4">
@@ -60,22 +62,25 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($livros as $livro)
-                        <tr>
-                            <td>{{ $livro->id }}</td>
-                            <td>{{ $livro->titulo }}</td>
-                            <td>{{ $livro->categoria->nome }}</td>
-                            <td>{{ $livro->data_publicacao }}</td>
-                            <td>
-                                <a href="{{ route('livros.show', $livro->id) }}" class="btn btn-info btn-sm">Ver</a>
-                                <a href="{{ route('livros.edit', $livro->id) }}" class="btn btn-warning btn-sm">Editar</a>
-                                <form action="{{ route('livros.destroy', $livro->id) }}" method="POST" style="display:inline-block;">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Tem certeza que deseja excluir?')">Excluir</button>
-                                </form>
-                            </td>
-                        </tr>
+                        @foreach ($livros as $livro)
+                            <tr>
+                                <td>{{ $livro->id }}</td>
+                                <td>{{ $livro->titulo }}</td>
+                                <td>{{ $livro->categoria->nome }}</td>
+                                <td>{{ $livro->data_publicacao }}</td>
+                                <td>
+                                    <a href="{{ route('livros.show', $livro->id) }}" class="btn btn-info btn-sm">Ver</a>
+                                    <a href="{{ route('livros.edit', $livro->id) }}"
+                                        class="btn btn-warning btn-sm">Editar</a>
+                                    <form action="{{ route('livros.destroy', $livro->id) }}" method="POST"
+                                        style="display:inline-block;">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger btn-sm"
+                                            onclick="return confirm('Tem certeza que deseja excluir?')">Excluir</button>
+                                    </form>
+                                </td>
+                            </tr>
                         @endforeach
                     </tbody>
                 </table>

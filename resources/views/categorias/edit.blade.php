@@ -8,19 +8,44 @@
 
 @section('content')
     <div class="container">
-        <form action="{{ route('categorias.update', $categoria->id) }}" method="POST">
-            @csrf
-            @method('PUT')
-            <div class="form-group">
-                <label for="nome">Nome:</label>
-                <input type="text" name="nome" class="form-control @error('nome') is-invalid @enderror" value="{{ old('nome', $categoria->nome) }}" required>
-                @error('nome')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                @enderror
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
             </div>
-            <button type="submit" class="btn btn-success">Atualizar</button>
-        </form>
+        @endif
+
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Editar Categoria</h3>
+                <div class="card-tools">
+                    <a href="{{ route('categorias.index') }}" class="btn btn-secondary btn-sm">
+                        Voltar para Listagem
+                    </a>
+                </div>
+            </div>
+            <div class="card-body">
+                <form action="{{ route('categorias.update', $categoria->id) }}" method="POST">
+                    @csrf
+                    @method('PUT')
+
+                    <div class="form-group">
+                        <label for="nome">Nome</label>
+                        <input type="text" name="nome" class="form-control @error('nome') is-invalid @enderror"
+                            value="{{ old('nome', $categoria->nome) }}" required>
+                        @error('nome')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Atualizar</button>
+                </form>
+            </div>
+        </div>
     </div>
 @endsection

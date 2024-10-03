@@ -34,7 +34,8 @@
 
                     <div class="form-group">
                         <label for="titulo">Título</label>
-                        <input type="text" name="titulo" class="form-control" id="titulo" value="{{ old('titulo', $livro->titulo) }}" required>
+                        <input type="text" name="titulo" class="form-control" id="titulo"
+                            value="{{ old('titulo', $livro->titulo) }}" required>
                     </div>
 
                     <div class="form-group">
@@ -44,21 +45,24 @@
 
                     <div class="form-group">
                         <label for="data_publicacao">Data de Publicação</label>
-                        <input type="date" name="data_publicacao" class="form-control" id="data_publicacao" value="{{ old('data_publicacao', $livro->data_publicacao) }}" required>
+                        <input type="date" name="data_publicacao" class="form-control" id="data_publicacao"
+                            value="{{ old('data_publicacao', isset($livro) ? \Carbon\Carbon::createFromFormat('d/m/Y', $livro->data_publicacao)->format('Y-m-d') : '') }}"
+                            required>
                     </div>
+
 
                     <div class="form-group">
                         <label for="categoria_id">Categoria</label>
                         <select name="categoria_id" class="form-control" id="categoria_id" required>
                             <option value="">Selecione a categoria</option>
-                            @foreach($categorias as $categoria)
-                                <option value="{{ $categoria->id }}" {{ $categoria->id == old('categoria_id', $livro->categoria_id) ? 'selected' : '' }}>
+                            @foreach ($categorias as $categoria)
+                                <option value="{{ $categoria->id }}"
+                                    {{ $categoria->id == old('categoria_id', $livro->categoria_id) ? 'selected' : '' }}>
                                     {{ $categoria->nome }}
                                 </option>
                             @endforeach
                         </select>
                     </div>
-
                     <button type="submit" class="btn btn-primary">Atualizar Livro</button>
                 </form>
             </div>

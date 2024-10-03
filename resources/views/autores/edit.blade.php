@@ -20,6 +20,14 @@
 
         <div class="card">
             <div class="card-body">
+                <div class="card-header">
+                    <h3 class="card-title">Editar Livro</h3>
+                    <div class="card-tools">
+                        <a href="{{ route('autores.index') }}" class="btn btn-secondary btn-sm">
+                            Voltar para Listagem
+                        </a>
+                    </div>
+                </div>
                 <form action="{{ isset($autor) ? route('autores.update', $autor->id) : route('autores.store') }}"
                     method="POST">
                     @csrf
@@ -41,7 +49,8 @@
                     <div class="form-group">
                         <label for="data_nascimento">Data de Nascimento</label>
                         <input type="date" name="data_nascimento" id="data_nascimento" class="form-control"
-                            value="{{ old('data_nascimento', isset($autor) ? $autor->data_nascimento : '') }}">
+                            value="{{ old('data_nascimento', isset($autor) ? \Carbon\Carbon::parse($autor->data_nascimento)->format('Y-m-d') : '') }}">
+
                     </div>
 
                     <button type="submit" class="btn btn-primary">{{ isset($autor) ? 'Atualizar' : 'Adicionar' }}</button>
