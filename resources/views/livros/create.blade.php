@@ -1,4 +1,4 @@
-@extends('adminlte::page')
+@extends('layouts.darkMode')
 
 @section('title', 'Adicionar Livro')
 

@@ -1,4 +1,4 @@
-@extends('adminlte::page')
+@extends('layouts.darkMode')
 
 @section('title', isset($autor) ? 'Editar Autor' : 'Adicionar Autor')
 

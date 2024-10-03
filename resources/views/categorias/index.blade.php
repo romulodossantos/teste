@@ -1,4 +1,4 @@
-@extends('adminlte::page')
+@extends('layouts.darkMode')
 
 @section('title', 'Categorias')
 
@@ -8,11 +8,12 @@
 
 @section('content')
     <div class="container">
-        @if (session('status'))
-        <div class="alert alert-success" role="alert">
-            {{ session('status') }}
-        </div>
-    @endif
+        @if (session('success'))
+            <div class="alert alert-success" role="alert">
+                {{ session('success') }}
+            </div>
+        @endif
+
         <div class="card">
             <div class="card-header">
                 <h3 class="card-title">Categorias</h3>
@@ -22,7 +23,32 @@
                     </a>
                 </div>
             </div>
+
             <div class="card-body">
+                <!-- Formulário de Filtro -->
+                <form method="GET" action="{{ route('categorias.index') }}" class="mb-3">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="nome">Nome:</label>
+                                <input type="text" name="nome" id="nome" class="form-control" placeholder="Filtrar por nome" value="{{ request('nome') }}">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="perPage">Itens por Página:</label>
+                                <input type="number" name="perPage" id="perPage" class="form-control" value="{{ request('perPage', 10) }}" min="1" max="100">
+                            </div>
+                        </div>
+                        <div class="col-md-4 d-flex align-items-center pt-4">
+                            <div class="w-100 text-center">
+                                <button type="submit" class="btn btn-primary">Filtrar</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+                <!-- Tabela de Categorias -->
                 <table class="table table-bordered table-hover">
                     <thead>
                         <tr>
@@ -52,7 +78,7 @@
 
                 <!-- Renderizando os links de paginação -->
                 <div class="d-flex justify-content-center m-3">
-                    {{ $categorias->links('vendor.pagination.bootstrap-4') }} <!-- Ou 'vendor.pagination.bootstrap-5' dependendo da versão -->
+                    {{ $categorias->links('vendor.pagination.bootstrap-4') }} <!-- Ou 'vendor.pagination.bootstrap-5', dependendo da versão -->
                 </div>
             </div>
         </div>
