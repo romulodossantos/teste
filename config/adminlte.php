@@ -321,12 +321,13 @@ return [
             'icon' => 'far fa-fw fa-file',
 
         ],
-        ['header' => 'account_settings'],
+
         [
-            'text' => 'profile',
-            'url' => 'admin/settings',
+            'text' => 'Autores',
+            'url' => 'autores',
             'icon' => 'fas fa-fw fa-user',
         ],
+        ['header' => 'account_settings'],
         [
             'text' => 'change_password',
             'url' => 'admin/settings',

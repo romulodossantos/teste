@@ -14,6 +14,7 @@ class AutorLivro extends Migration
     // database/migrations/xxxx_xx_xx_criar_tabela_autor_livro.php
     public function up()
     {
+
         Schema::create('autor_livro', function (Blueprint $table) {
             $table->id();
             $table->foreignId('autor_id')->constrained('autores')->onDelete('cascade');
