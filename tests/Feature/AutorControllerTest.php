@@ -91,7 +91,7 @@ class AutorControllerTest extends TestCase
         $response->assertStatus(200);
 
         // Verificar se o tempo de resposta foi menor que 2 segundos
-        $this->assertTrue($duration < 2, "O tempo de resposta foi maior que 2 segundos: {$duration} segundos");
+        $this->assertTrue($duration < 0.2, "O tempo de resposta foi maior que 2 segundos: {$duration} segundos");
     }
     /** @test */
     public function performance_criar_autores_em_massa()
@@ -106,6 +106,6 @@ class AutorControllerTest extends TestCase
         $duration = microtime(true) - $start;
 
         // Verificar se o tempo de criação foi menor que 5 segundos
-        $this->assertTrue($duration < 5, "O tempo de criação de autores foi maior que 5 segundos: {$duration} segundos");
+        $this->assertTrue($duration < 0.5, "O tempo de criação de autores foi maior que 5 segundos: {$duration} segundos");
     }
 }

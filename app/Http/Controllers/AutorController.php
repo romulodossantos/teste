@@ -18,7 +18,7 @@ class AutorController extends Controller
         }
 
         // Paginação
-        $autores = $query->paginate($request->input('perPage', 10));
+        $autores = $query->paginate($request->input('perPage', 50));
 
         return view('autores.index', compact('autores'));
     }
